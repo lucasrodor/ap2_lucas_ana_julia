@@ -1,0 +1,20 @@
+[project]
+name = "programacao-para-analise-de-dados-2025-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "chromium>=0.0.0",
+    "ipykernel>=6.30.1",
+    "matplotlib>=3.10.5",
+    "pandas>=2.3.2",
+    "playwright>=1.55.0",
+    "requests>=2.32.5",
+    "statsmodels>=0.14.5",
+]
+
+[tool.uv.workspace]
+members = [
+    "ap2",
+]
