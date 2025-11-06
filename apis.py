@@ -6,8 +6,8 @@ import pandas as pd
 # ==============================
 BASE = "https://www.ipea.gov.br/atlasviolencia/api/v1"
 SERIE_ID = 328  # Homicídios
-ARQ_SEG = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2\data\despesas_seguranca.xlsx"
-ARQ_ICMS = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2\data\finbra_icms.xlsx"
+ARQ_SEG = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2_lucas_julia_ana\data\despesas_seguranca.xlsx"
+ARQ_ICMS = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2_lucas_julia_ana\data\finbra_icms.xlsx"
 
 # ==============================
 # 1) Séries por UF (para medidas)
@@ -176,7 +176,7 @@ print(df_final.head())
 # ==============================
 
 # Caminho onde o arquivo será salvo (você pode mudar o nome ou a pasta)
-caminho_saida = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2\data\dados_completos_final.xlsx"
+caminho_saida = r"C:\Users\lucas\IBMEC\programacao_para_analise_de_dados_2025.2\ap2_lucas_julia_ana\data\dados_completos_final.xlsx"
 
 # Salva em Excel (sem o índice)
 df_final.to_excel(caminho_saida, index=False)
