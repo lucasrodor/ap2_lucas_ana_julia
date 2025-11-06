@@ -129,6 +129,59 @@ fig.tight_layout()
 fig.savefig("figs/06_top10_taxa.png", dpi=220, bbox_inches="tight")
 pdf.savefig(fig); plt.close(fig)
 
+
+# ==============================================
+# 7) Dispersão: gasto em segurança per capita x taxa de homicídios
+# ==============================================
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+# garantir tipos
+df_final["Gasto_pc"] = pd.to_numeric(df_final["Gasto_Seguranca"] / df_final["População"], errors="coerce")
+df_final["Taxa_1000hab"] = pd.to_numeric(df_final["taxa/1000hab"], errors="coerce")
+
+# gráfico de dispersão
+fig = plt.figure(figsize=(8,6))
+plt.scatter(df_final["Gasto_pc"], df_final["Taxa_1000hab"], alpha=0.7)
+plt.title("Relação entre gasto em segurança per capita e taxa de homicídios (por 1 000 hab)")
+plt.xlabel("Gasto em segurança per capita (R$)")
+plt.ylabel("Taxa de homicídios (por 1 000 hab)")
+plt.grid(True, alpha=0.3)
+
+# linha de tendência
+x = df_final["Gasto_pc"].dropna()
+y = df_final["Taxa_1000hab"].dropna()
+if len(x) > 1:
+    coef = np.polyfit(x, y, 1)
+    poly1d_fn = np.poly1d(coef)
+    plt.plot(x, poly1d_fn(x), color="red", linewidth=2, label="Tendência linear")
+    plt.legend()
+
+fig.tight_layout()
+fig.savefig("figs/07_scatter_gastopc_taxa.png", dpi=220, bbox_inches="tight")
+plt.close(fig)
+
+# ==============================================
+# 8) Top 10 municípios com maior gasto per capita em segurança
+# ==============================================
+top10_gasto = df_final.sort_values("Gasto_pc", ascending=False).head(10)
+labels = top10_gasto["Municipio"].str.replace(" - GO", "", regex=False)
+
+fig = plt.figure(figsize=(10,5))
+plt.barh(labels, top10_gasto["Gasto_pc"], color="steelblue")
+plt.gca().invert_yaxis()
+plt.title("Top 10 municípios de Goiás por gasto em segurança per capita (2023)")
+plt.xlabel("Gasto em segurança per capita (R$)")
+plt.ylabel("Município")
+plt.grid(True, axis="x", alpha=0.3)
+
+fig.tight_layout()
+fig.savefig("figs/08_top10_gasto_pc.png", dpi=220, bbox_inches="tight")
+plt.close(fig)
+
+
+
 # ==============================================
 # 7) Boxplot, correlação e histogramas (com df_final)
 # ==============================================
